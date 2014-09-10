@@ -321,7 +321,9 @@
 % cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
 % not format its papers in such ways.
 
-
+%\usepackage[table]{xcolor}
+\usepackage{todonotes}
+%\usepackage{menukeys}
 
 \usepackage{url}
 
@@ -434,6 +436,21 @@ Los contenidos han sido diseñados siguiendo la guía curricular de la ACM/IEEE 
 \IEEEpeerreviewmaketitle
 
 
+% El trabajo describe el diseño curricular y la experiencia de impartición de una asignatura  denominada “Desarrollo de aplicaciones para la nube” dentro de un curso experto universitario.
+% La temática del trabajo encaja por tanto perfectamente dentro de la categoría “Métodos y Casos en Educación en Informática”.
+% El artículo está bien redactado y se lee con facilidad. La contribución del trabajo desde el punto de vista científico no está del todo claro.
+% El uso de servicios como Amazon Web Service o  Google Cloud Platform no suele ser habitual en cursos universitarios y la descripción de una experiencia de uso en este contexto puede ser de interés para la comunidad.
+% Sin embargo gran parte del documento se dedica a describir en detalle el diseño de los distintos bloques temáticos de la asignatura,
+% razonando la elección de los frameworks y servicios a utilizar durante el curso.
+
+% La experiencia concreta de los alumnos y las actividades de aprendizaje realiza! das son presentadas a un menor nivel de detalle.
+% Por ejemplo: ¿en qué consistieron exactamente los trabajos y proyectos de los alumnos? ¿cuáles fueron las actividades concretas a desarrollar?
+% ¿trabajaron en grupos o de forma individual? Las opciones de evaluación tampoco aparecen claramente explicadas.
+% Se entiende por las conclusiones que existieron dos modalidades, tradicional y "eEvaluación" (¿no presencial?), aunque las diferencias entre ambas no son explicadas.
+% Las conclusiones que pueden ser más interesantes para otros diseñadores instruccionales que se planteen diseñar cursos similares son aquellas relacionadas con la tecnología,
+% sin embargo éstas son presentadas a un nivel muy general, con poca información sobre los puntos fuertes y débiles observados.
+% Los parámetros utilizados para estimar el éxito del curso (estudiantes matriculados, tasas bajas de matrículas) podrían ser discutibles.
+% El título de la referencia 8 aparece en mayúsculas.
 
 \section{Introducción}
 % no \IEEEPARstart
@@ -454,9 +471,9 @@ profesionales ya titulados.
 La computación en la nube (\textit{Cloud Computing}) \cite{Buyya:2013}, y dentro
 de ésta la
 infraestructura como
-un servicio (\textit{Infraestructure as a Service (IaaS)})
+un servicio (\textit{Infraestructure as a Service o IaaS})
 y 
-la plataforma como un servicio (\textit{Platform as a Service (PaaS)})
+la plataforma como un servicio (\textit{Platform as a Service o PaaS})
 \cite{Carlson:2013},
 constituyen un bloque temático cada vez más demandado por los estudiantes y
 profesionales de las Tecnologías de la Información y de las Comunicaciones
@@ -468,7 +485,8 @@ profesionales de las Tecnologías de la Información y de las Comunicaciones
 Dado
 el carácter novedoso de estas materias, que poca cabida tuvieron en la
 titulación de GII, la ULPGC empezó a impartir enel curso 2013/14 el título propio de Experto Universitario en
-Virtualización y Computación en la Nube (EUVCN) \cite{Experto:2014}. Este título
+Virtualización y Computación en la Nube (EUVCN)\footnote{Experto Universitario en Computación en la Nube,
+\url{http://eii.ulpgc.es/experto\_cloud}}. Este título
 propio, de 24
 créditos ECTS,
 está estructurado  en 4 asignaturas de 6 créditos:
@@ -511,7 +529,7 @@ Esta asignatura contiene los resultados de aprendizaje (\textit{Learning Outcome
 \#4 Desplegar una aplicación que use recursos de infraestructura en la nube para cómputo o datos
 (\textit{Deploy an application that uses cloud infrastructure for computing and/or data resources}).
 A tener en cuenta, es que resulta imposible plantear una asignatura de infraestructuras públicas y desarrollo de aplicaciones sin cubrir
-otras áreas o unidades de conocimiento de la curricula, pero este artículo está centrado en los tópicos relacionados con la computación en la nube.
+otras áreas o unidades de conocimiento de los planes de estudio, pero este artículo está centrado en los tópicos relacionados con la computación en la nube.
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -603,7 +621,7 @@ nube y a desarrollar aplicaciones para la nube.
 
 Para poder alcanzar estos objetivos es
 imprescindible  manejar las infraestructuras tecnológicas de los
-proveedores públicos de servicios en la nube. Dado que el estudiante de un
+proveedores públicos de servicios en la nube. Dado que el estudiante de un curso de
 experto universitario demanda ``aprender haciendo'' desde las primeras
 horas de docencia, es necesario seleccionar
 tempranamente un proveedor de servicios en la nube para ejemplificar los contenidos a
@@ -636,7 +654,7 @@ La interacción de los estudiantes con los servicios remotos proporcionados con
 AWS tiene lugar desde equipos locales utilizando un \textit{Application
 Programming Interface} (API). Esta API está desarrollada para casi todos los
 lenguajes más comunes como PHP, Java,
-javascript \dots y también otros menos populares Python o Ruby \cite{Ruby:2013}.
+Javascript \dots y también otros menos populares Python o Ruby \cite{Ruby:2013}.
 La elección de uno u otro, podría no ser relevante de no considerar el requisito
 de unificar el lenguaje de programación
 a usar tanto en este primer bloque temático de uso de servicios de
@@ -651,13 +669,20 @@ consistió en migrar una aplicación local ya desarrollada a la nube teniendo en
 cuenta las particularidades de la aplicación \cite{Reese:2013, Barr:2010}. Una
 vez movida la aplicación, la modificamos  para que sea escalable
 horizontalmente y poder usar los servicios de autoescalado de AWS, balanceo de
-carga ELB y RDS. El escalado horizontal consiste en el despliegue de máquinas clones a los servidores como respuesta a la ocurrencia de eventos predefinidos
-(peticiones http, carga de la CPU \dots). La contrapartida es el escalado vertical donde las características de la máquina escala a mayor prestaciones.
+carga ELB y RDS.
+El escalado horizontal consiste en el despliegue de máquinas clones con las mismas características  como respuesta a la ocurrencia de eventos predefinidos
+(peticiones http, carga de la CPU \dots). La otra opción para responder a aumentos de demanda es el escalado vertical donde las características de la máquina escala a una de mayor prestaciones.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{scale.jpeg}
+\caption{Escalado vertical frente escalado horizontal.}
+\label{fig:console}
+\end{figure}
 
 La infraestructura virtual desplegada es estresada mediante
 un patrón de alta y baja carga definido con JMeter \cite{{Erinle:2013}} para
-provocar el \textit{scaling up} y
-\textit{scaling down} horizontal del sitio.
+comprobar la elasticidad de los servidores del sitio, provisonando servidores cuando aumenta la demanda y reduciendo el número de servidores cuando disminuye.
 
 
 Un componente básico de la nube lo forman los sistemas de almacenamiento distribuidos. En este tema los estudiantes realizan programas para subir y descargar
@@ -682,14 +707,14 @@ aplicación web y el desarrollo de una aplicación para la nube
 \cite{Heroku:2013,Wilder:2012}. La elección de un PasS para ``aprender
 haciendo'' (y ``enseñar haciendo'') fija la selección concreta
 de los LVs. En el momento de la confección de los contenidos, dos PaaS's
-(Google App Eng \cite{Severance:2009} y Heroku) lideraban el mercado de las
-plataformas como servicio. Google App Eng utilizaba como único lenguaje de
+(Google App Engine \cite{Severance:2009} y Heroku) lideraban el mercado de las
+plataformas como servicio. Google App Engine utilizaba como único lenguaje de
 programación Python. Heroku es un PaaS construido sobre el IaaS de Amazon y estaba
 orientado inicialmente a facilitar el despliegue de  aplicaciones escritas
 en el framework de aplicaciones Ruby on Rails (RoR) \cite{Hartl:2012} (ahora
-Heroku es políglota y permite el despliegue de aplicaciones en PHP, java,
+Heroku es políglota y permite el despliegue de aplicaciones en PHP, Java,
 y otros lenguajes). RoR es un framework consolidado de desarrollo, utilizado por ejemplo en
-las aplicaciones Twitter y GitHub. Todos esto, más la existencia de gemas para
+las aplicaciones Twitter y GitHub. Todo esto, más la existencia de gemas (biblioteca de funciones y comandos de consola) para
 facilitar el uso del manejo de las infraestructuras de AWS en RoR, y la
 disponibilidad de una capa gratuita en Heroku para el despliegue de las
 aplicaciones, condicionó la elección de Heroku como PaaS y RoR como framework de
@@ -698,9 +723,30 @@ programación.
 Los contenidos de este bloque están centrados en el desarrollo de aplicaciones escalables horizontalmente, alta disponibilidad y alto rendimiento.
 Los temas a tratar son las aplicaciones sin estado, procesos en \textit{background}, subidas de ficheros asíncronas,
 manejo de \textit{cache} y  de servidores de \textit{cache},
-gestión de ficheros de logs y utilización de paneles profesionales de gestión de aplicaciones.
+gestión de ficheros de \textit{logs} y utilización de paneles profesionales de gestión de aplicaciones.
 
+\todo{A}
+El éxito de una aplicación para la nube depende de muchos factores (que muchas veces no tienen que ver con el diseño tecnológico).
+Uno de ellos es la experiencia del usuario y más concrétamente el tiempo de respuesta.
+En aplicaciones con el requisito de alta disponibilidad y alto rendimiento, el uso efectivo de un mecanismo de \textit{cache} resulta imprescindible para proporcionar la experiencia de ``tiempo real'' a los usuarios.
+La utilización de \textit{cache} implica tener en cuenta la seguridad de los datos ya almacenados de manera que no puedan ser accedidos por usuarios no autorizados.
+Los estudiantes tratan estos tópicos configurando inicialmente un servidor local de \textit{MemCached} y luego optimizan partes de una aplicación ya desarrollada mediante las técnicas que proporciona Ruby on Rails de
+\textit{page chaching} y \textit{fragment caching}. En una segunda parte, mueven la aplicación y el servidor de \textit{MemCached} a la plataforma Heroku.
+
+
+\todo{A}
+Una aplicación para la nube casi con toda seguridad utilizará procesos en \textit{background}. El trabajo concreto desarrollado por los estudiante fue la creación de las imágenes  miniatura
+\textit{thumbnails} de imágenes subidas con anterioridad, para ello fue necesario proveer a la aplicación de un servidor de \textit{Redis} para guardar los datos específicos del trabajo en 
+\textit{background}. Los dos casos de provisionamiento: la instalación y configuración de un servidor local de \textit{Redis} y la utilización de un \textit{add-on} de Heroku son estudiados.
+La gestión de  procesos en \textit{background} implica la utilización de recursos virtuales en la plataforma donde está desplegada la aplicación para la nube,
+el estudiante debe configurar el número mínimo y máximo de procesos en \textit{background} y calcular el coste económico de los mismos.
  
+\todo{A}
+Los ficheros de \textit{logs} proporcionan información de la utilización de la aplicación. En una aplicación no escalable la información de \textit{logs} está en ficheros generalmente locales al servidor.
+Las configuraciones autoescalables requieren del patrón de \textit{stateless} y ello implica establecer una gestión externa de la información de \textit{logs}.
+Utilizamos el \textit{add-on} ``PaperClip'' de Heroku que proporciona el servicio de externalización de \textit{logs}, los estudiantes emplean la consola para clasificar la información,
+realizar búsquedas, establecer reglas; también calculan el coste a pagar al proveedor del servicio y aprenden el establecimiento de alarmas.
+
 
 El uso de los servicios ofertados por los
 proveedores públicos implica ser capaz de realizar una previsión del coste de
@@ -733,7 +779,7 @@ para la realización de las prácticas planteadas (el 80\% de los estudiantes no
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{console.jpeg}
+\includegraphics[width=\columnwidth]{aws_management_console_home.png}
 \caption{Consola de AWS.}
 \label{fig:console}
 \end{figure} 
@@ -748,7 +794,7 @@ Otra vez, al igual que con AWS, la capa gratuita proporcionada por Heroku es suf
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{heroku.jpeg}
+\includegraphics[width=\columnwidth]{heroku.jpeg}
 \caption{Acceso al PaaS Heroku.}
 \label{fig:heroku}
 \end{figure}
@@ -756,7 +802,7 @@ Otra vez, al igual que con AWS, la capa gratuita proporcionada por Heroku es suf
 
 
 
-\section{eEvaluacións
+\section{eEvaluación
 \label{sec:eValuacion}}
 
 La asignatura presentada está contextualizada en un curso de experto universitario cuyos contenidos versan acerca de la ``nube''.
@@ -773,6 +819,50 @@ comprobar el correcto funcionamiento de las infraestructuras.
 Por otro lado, se fomenta la utilización de repositorios en la nube para el código desarrollado, la definición de grupos de colaboración y el uso de PaaS, permite a los profesores la evaluación remota de las aplicaciones realizadas.
 Los repositorios remotos permiten a los profesores clonar las aplicaciones para inspeccionar la calidad del código desarrollado y
 la ejecución de una batería de pruebas sobre el código permite la comprobación de la correctitud del mismo. 
+
+\todo{B}
+En este contexto, entendemos por trabajos de curso modificaciones propuestas por los profesores de los ejemplos prácticos desarrollados durante las sesiones presenciales y que no requieren
+de una gran dedicación temporal.
+Estos trabajos de cursos fomentan la autonomía profesional ya que
+el estudiante  busca individualmente la solución a los trabajos planteados, acostumbrándose a manejar y valorar la información proporcionada por
+los proveedores y a enfrentarse a las nuevas circunstancias que aparezcan.
+
+\todo{B}
+Así para la temática de autoescalado de las máquinas virtuales, el trabajo de curso consistió en cambiar las alarmas del servicio \textit{CloudWatch} para que la provisión de infraestructura
+no ocurriera tal y como los profesores la presentaron mediante un pico de la utilización de la CPU,
+sino a una hora determinada (simulando un inicio de un jornada laboral, un comienzo de un evento concreto \dots). Los estudiantes, en el caso del S3, tuvieron que escribir una versión simplificada
+de la orden \texttt{rsync} de Linux para sincronizar un respositorio local con un \textit{bucket} en el S3 de AWS.
+ 
+\todo{B}
+Dos fueron los proyectos planteados, uno para cada temática de la asignatura.
+
+\todo{B}
+El primero aglutina en un único trabajo todos los servicios de AWS estudiados. La aplicación dada una \textit{url}
+(en la práctica utilizamos las direcciones de diarios digitales) determinaba qué palabras (excluidas preposiciones y artículos) y con qué frecuencia
+se utilizaban en los titulares de las noticias. La figura \ref{fig:trabajo} ayuda a entender el proyecto.
+Hay cuatro colas. Un primer script que simplemente añade la \textit{url} de partida a la cola de \textit{urls}.
+Un proceso que recoge los mensajes en este cola y descarga la página html al S3 y genera dos mensajes con la información de la localización
+de la página: una para la cola de títulos y otro para la cola  de \textit{crawler}.
+Otro proceso  recoge los mensajes en la cola de titulos y crea otro fichero en el S3 con texto plano con el contenido de los títulos y añade un mensaje a la cola de contar palabras.
+Otro proceso más paralelamente al anterior coge los datos la cola de \textit{crawler} y busca \textit{urls} relativas al sitio y las añade a la cola de \textit{urls}.
+Un último proceso toma el texto plano del fichero en el S3 indicado en el mensaje del la cola de contar palabras y registra en simpleDB la utilización de las palabras.
+
+En el segundo proyecto, los estudiantes desarrollaron una aplicación web (la propuesta fue una aplicación de zapatos) a desplegar en Heroku.
+Tenían que utilizar procesos en \textit{background} y técnicas de \textit{cache} a la vez que el servicio de almacenamiento del S3 para la gestión de la subida de ficheros.
+
+
+\todo{Mentira pero...}
+La elección de Ruby como lenguaje de programación y Ruby on Rails como framework de desarollo tiene una ventaja añadida cara a realizar la eEvaluación de los trabajos y proyectos del curso.
+Ruby y Ruby on Rails incluyen frameworks de prueba (TestUnit, RSpec, Cucumber, \dots...) que permiten fácilmente el diseño de pruebas por parte del profesorado para comprobar la correción de los desarrollos,
+y llegado el caso, incluso a la automatización de los mismos.
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{Homework_sqs_sdb.jpeg}
+\caption{Proyecto fin de curso para los servicios AWS.}
+\label{fig:trabajo}
+\end{figure}
 
 \section{Conclusiones \label{sec:conclusiones}}
 
@@ -854,11 +944,14 @@ estudiantes.
 El desarrollo profesional de aplicaciones para la nube no es un tema sencillo,
 implica la integración de muchas herramientas profesionales que tienen una
 curva de aprendizaje alto.
-RoR abraza la metodología de sofware ``desarrollo basado en test ('' \textit{Test Driven Development} TDD) \cite{Rappin:2010} desde el comienzo del desarrollo y
+RoR abraza la metodología de sofware ``desarrollo basado en test'' ( \textit{Test Driven Development} TDD) \cite{Rappin:2010} desde el comienzo del desarrollo y
 Heroku utiliza el gestor de versiones Git \cite{Chacon:2009},
  la puesta al día requiere de un trabajo extra personal, por lo que ha sido planificado en las horas no presenciales de los créditos ECTS.
 La utilización de un PaaS para el despliegue continuo de las aplicaciones y el uso de los recursos de la nube resultó novedoso y fue apreciado por los alumnos,
 pero llevó tiempo que los estudiantes descubrieran la ventaja de la utilización de tests desde el comienzo del desarrollo y de un PaaS para el despliegue.
+
+
+
 
 Los resultados de aprendizaje están en consonancia con las directrices de la ACM/IEEE CS2013 que prima el manejo de recursos en la computación en la nube
 y el despliegue de aplicaciones que usan infraestructuras en la nube para provisionar recursos de cómputo y de datos.
@@ -934,9 +1027,7 @@ L.~Carlson, \emph{Programming for PaaS},
 Computer Science Curricula 2013,
 \url{http://www.acm.org/education/CS2013-final-report.pdf}
 
-\bibitem{Experto:2014}
-Experto Universitario en Computación en la Nube,
-\url{http://eii.ulpgc.es/experto\_cloud}
+
 
 \bibitem{Zhang:2010}
 Y.~Zhang, G.~Song and X~Chen, \emph{Virtual and Remote Laboratory Development: A
@@ -954,8 +1045,8 @@ C.~Kemp and B.~Gyger, \emph{Professional Heroku Programming},
   0.5em minus 0.4em\relax USA: Wrox, 2013.
 
 \bibitem{Moral2013}
-Mª.~E.~del~Moral~Pérez and L.Villalustre~Martínez, \emph{e-EVALUACIÓN EN ENTORNOS VIRTUALES: HERRAMIENTAS Y
-ESTRATEGIAS},
+Mª.~E.~del~Moral~Pérez and L.Villalustre~Martínez, \emph{e-Evaluación en entornos virtuales: Herramientas y
+estrategias},
 \hskip 1em plus
  0.5em minus 0.4em\relax IV Jornadas de Campus Virtuales 2013, España
 
